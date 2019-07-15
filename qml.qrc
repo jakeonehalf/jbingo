@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>BingoRow.qml</file>
+        <file>BingoBoard.qml</file>
+        <file>BingoSquare.qml</file>
     </qresource>
 </RCC>
