@@ -2,6 +2,7 @@ import QtQuick 2.9
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.3
+import QtSpeak 1.0
 
 Window {
     id: main
@@ -15,6 +16,48 @@ Window {
     property bool fullscreen: false
 
     visibility: (fullscreen) ? Window.FullScreen : Window.Windowed
+
+    function takeGuess() {
+        if (bingoBoard.allSelected()) {
+            run.stop();
+            return;
+        }
+
+        var guess = Math.floor((Math.random() * 75));
+
+        while(bingoBoard.isSelected(guess)) {
+            guess = Math.floor((Math.random() * 75));
+        }
+
+        bingoBoard.select(guess);
+
+        var row = Math.floor(guess / 15);
+        var column = (guess % 15) + 1;
+
+        switch (row) {
+        case 0:
+            lastCalled.text = "B" + (guess + 1);
+            break;
+        case 1:
+            lastCalled.text = "I" + (guess + 1);
+            break;
+        case 2:
+            lastCalled.text = "N" + (guess + 1);
+            break;
+        case 3:
+            lastCalled.text = "G" + (guess + 1);
+            break;
+        case 4:
+            lastCalled.text = "O" + (guess + 1);
+            break;
+        }
+
+        speaker.speak(lastCalled.text);
+    }
+
+    Speak {
+        id: speaker
+    }
 
     Item {
         id: escapeItem
@@ -110,42 +153,6 @@ Window {
             onClicked: {
                 bingoBoard.reset();
             }
-        }
-    }
-
-    function takeGuess() {
-        if (bingoBoard.allSelected()) {
-            run.stop();
-            return;
-        }
-
-        var guess = Math.floor((Math.random() * 75));
-
-        while(bingoBoard.isSelected(guess)) {
-            guess = Math.floor((Math.random() * 75));
-        }
-
-        bingoBoard.select(guess);
-
-        var row = Math.floor(guess / 15);
-        var column = (guess % 15) + 1;
-
-        switch (row) {
-        case 0:
-            lastCalled.text = "B" + (guess + 1);
-            break;
-        case 1:
-            lastCalled.text = "I" + (guess + 1);
-            break;
-        case 2:
-            lastCalled.text = "N" + (guess + 1);
-            break;
-        case 3:
-            lastCalled.text = "G" + (guess + 1);
-            break;
-        case 4:
-            lastCalled.text = "O" + (guess + 1);
-            break;
         }
     }
 
