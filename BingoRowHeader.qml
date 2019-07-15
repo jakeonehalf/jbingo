@@ -1,25 +1,14 @@
 import QtQuick 2.0
 
 Rectangle {
-    property bool selected: false
-
-    onSelectedChanged: {
-        color = (selected) ? "#f54254" : "#4287f5";
-
-        console.log(row + column + " is now " + ((selected) ? "selected" : "unselected"));
-    }
-
     color: "#4287f5"
 
-    property string row
-    property int    column
+    property alias text: textbox.text
 
     border.color: "white"
 
     Text {
         id: textbox
-
-        text: column
 
         anchors.fill: parent
 
@@ -27,6 +16,8 @@ Rectangle {
 
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
+
+        font.bold: true
 
         font.pointSize: 36
         minimumPointSize: 16
@@ -40,23 +31,17 @@ Rectangle {
         hoverEnabled: true
 
         onEntered: {
-            if (selected) {
-                parent.color = "#f02438"
-            } else {
+            if (parent.color == "#4287f5")
                 parent.color = "#2478ff";
-            }
+            else
+                parent.color = "#f02438"
         }
 
         onExited: {
-            if (selected) {
-                parent.color = "#f54254";
-            } else {
+            if (parent.color == "#2478ff")
                 parent.color = "#4287f5";
-            }
-        }
-
-        onClicked: {
-            selected = !selected;
+            else
+                parent.color = "#f54254";
         }
     }
 }

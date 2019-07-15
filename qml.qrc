@@ -4,5 +4,7 @@
         <file>BingoRow.qml</file>
         <file>BingoBoard.qml</file>
         <file>BingoSquare.qml</file>
+        <file>IconButton.qml</file>
+        <file>BingoRowHeader.qml</file>
     </qresource>
 </RCC>
