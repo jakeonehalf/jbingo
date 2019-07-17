@@ -161,43 +161,29 @@ Window {
         height: parent.height / 4
     }
 
-    RowLayout {
+    BingoControl {
+        id: bingoControl
+
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 15
 
-        spacing: 10
-
-        Button {
-            id: startButton
-
-            Layout.preferredWidth: 125
-            Layout.preferredHeight: 50
-
-            text: (run.running) ? "Stop" : "Start"
-
-            onClicked: {
-                if (run.running) {
-                    run.stop();
-                } else {
-                    takeGuess();
-                    run.start();
-                }
-            }
+        onStart: {
+            run.start();
         }
 
-        Button {
-            id: resetButton
+        onPause: {
+            run.stop();
+        }
 
-            Layout.preferredWidth: 125
-            Layout.preferredHeight: 50
+        onStop: {
+            lastCalled.text = "";
+            BingoGrid.reset();
+        }
 
-            text: "Reset"
-
-            onClicked: {
-                lastCalled.text = "";
-                BingoGrid.reset();
-            }
+        onNext: {
+            if (run.running) run.restart();
+            takeGuess();
         }
     }
 
