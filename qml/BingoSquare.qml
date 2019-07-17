@@ -5,9 +5,10 @@ Rectangle {
     property bool selected: false
     property int item
     property bool blink: false
+    property bool color_status: false
 
     onSelectedChanged: {
-        color = (selected) ? "#f54254" : "#4287f5";
+        color_status = selected;
 
         var row;
         switch (Math.floor((item - 1) / 15)) {
@@ -26,20 +27,20 @@ Rectangle {
             blinkTimer.repeat = true;
 
             blinkTimer.triggered.connect(function() {
-               if (blink) selected = !selected;
+               if (blink) color_status = !color_status;
                else blinkTimer.destroy();
             });
 
             blinkTimer.start();
         } else {
-            selected = true;
+            color_status = selected;
         }
     }
 
     Layout.preferredWidth: (parent.width / 15) - 2
     Layout.preferredHeight: (parent.height / 5) - 2
 
-    color: "#4287f5"
+    color: (color_status) ? "#f54254" : "#4287f5"
 
     border.color: "white"
 
