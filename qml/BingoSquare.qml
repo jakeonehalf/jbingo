@@ -16,8 +16,6 @@ Rectangle {
         case 3: row = 'G'; break;
         case 4: row = 'O'; break;
         }
-
-        console.log(row + item + " is now " + ((selected) ? "selected" : "unselected"));
     }
 
     Layout.preferredWidth: (parent.width / 15) - 2
@@ -39,7 +37,7 @@ Rectangle {
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
 
-        font.pointSize: 36
+        font.pointSize: 128
         minimumPointSize: 16
 
         fontSizeMode: Text.Fit

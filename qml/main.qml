@@ -10,8 +10,8 @@ Window {
     id: main
 
     visible: true
-    width: 640
-    height: 480
+    width: 800
+    height: 600
     title: "J-Bingo"
     color: "#1c1c1c"
 
@@ -197,19 +197,23 @@ Window {
         }
     }
 
-    Button {
-        id: fullscreenButton
+    IconButton {
+        id: fullscreenIcon
 
-        Layout.preferredWidth: 125
-        Layout.preferredHeight: 50
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
 
-        text: (fullscreen) ? "Exit Fullscreen" : "Enter Fullscreen"
+        anchors.bottomMargin: 15
+        anchors.rightMargin: 15
+
+        width: 50
+        height: 50
+
+        source: (fullscreen) ? "qrc:/icons/exit-fullscreen-icon.svg" : "qrc:/icons/enter-fullscreen-icon.svg"
 
         onClicked: {
             fullscreen = !fullscreen;
         }
-
-        visible: !fullscreen
     }
 
     Item {
@@ -220,8 +224,6 @@ Window {
 
         Keys.onEscapePressed: {
             fullscreen = false;
-
-            console.log("Escape pressed.");
         }
     }
 }

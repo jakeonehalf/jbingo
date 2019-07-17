@@ -20,7 +20,7 @@ Rectangle {
 
         font.bold: true
 
-        font.pointSize: 36
+        font.pointSize: 128
         minimumPointSize: 16
 
         fontSizeMode: Text.Fit
