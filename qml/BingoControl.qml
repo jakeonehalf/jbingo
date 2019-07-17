@@ -17,6 +17,8 @@ RowLayout {
         width: 50
         height: 50
 
+        color: "red"
+
         source: "qrc:/icons/stop.svg"
 
         onClicked: {
@@ -29,6 +31,8 @@ RowLayout {
 
         width: 50
         height: 50
+
+        color: (running) ? "yellow" : "green"
 
         source: (running) ? "qrc:/icons/pause.svg" : "qrc:/icons/play.svg"
 

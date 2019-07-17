@@ -3,6 +3,7 @@ import QtGraphicalEffects 1.0
 
 Item {
     property alias source: icon.source
+    property alias color: overlay.color
 
     signal clicked
 
@@ -33,6 +34,7 @@ Item {
     }
 
     ColorOverlay {
+        id: overlay
         anchors.fill: icon
         source: icon
         color: "white"
