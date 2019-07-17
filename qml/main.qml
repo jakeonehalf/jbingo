@@ -16,6 +16,7 @@ Window {
     color: "#1c1c1c"
 
     property bool fullscreen: false
+    property int guess
 
     visibility: (fullscreen) ? Window.FullScreen : Window.Windowed
 
@@ -25,7 +26,9 @@ Window {
             return;
         }
 
-        var guess = Math.floor((Math.random() * 75));
+        BingoGrid.stopBlink(guess);
+
+        guess = Math.floor((Math.random() * 75));
 
         while(BingoGrid.isSelected(guess)) {
             guess = Math.floor((Math.random() * 75));
@@ -44,6 +47,7 @@ Window {
 
         lastCalled.text = row + (guess + 1);
 
+        BingoGrid.blink(guess);
         speaker.speak(lastCalled.text);
     }
 

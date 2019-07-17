@@ -10,6 +10,14 @@ function createGrid() {
     }
 }
 
+function blink(item) {
+    grid[item].blink = true;
+}
+
+function stopBlink(item) {
+    grid[item].blink = false;
+}
+
 function select(item) {
     grid[item].selected = true;
 }
@@ -24,6 +32,7 @@ function isSelected(item) {
 
 function reset() {
     for (var i = 0; i < 75; i++) {
+        grid[i].blink = false;
         grid[i].selected = false;
     }
 }

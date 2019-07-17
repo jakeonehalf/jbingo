@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.3
 Rectangle {
     property bool selected: false
     property int item
+    property bool blink: false
 
     onSelectedChanged: {
         color = (selected) ? "#f54254" : "#4287f5";
@@ -15,6 +16,23 @@ Rectangle {
         case 2: row = 'N'; break;
         case 3: row = 'G'; break;
         case 4: row = 'O'; break;
+        }
+    }
+
+    onBlinkChanged: {
+        if (blink) {
+            var blinkTimer = Qt.createQmlObject("import QtQuick 2.0; Timer {}", parent);
+            blinkTimer.interval = 500;
+            blinkTimer.repeat = true;
+
+            blinkTimer.triggered.connect(function() {
+               if (blink) selected = !selected;
+               else blinkTimer.destroy();
+            });
+
+            blinkTimer.start();
+        } else {
+            selected = true;
         }
     }
 
