@@ -16,7 +16,6 @@ Window {
     color: "#1c1c1c"
 
     property bool fullscreen: false
-    property bool mute: false
     property int guess
 
     visibility: (fullscreen) ? Window.FullScreen : Window.Windowed
@@ -49,7 +48,7 @@ Window {
         lastCalled.text = row + (guess + 1);
 
         BingoGrid.blink(guess);
-        if (!mute) speaker.speak(lastCalled.text);
+        speaker.speak(lastCalled.text);
     }
 
     Timer {
@@ -64,6 +63,7 @@ Window {
     }
 
     Speak {
+        mute: false
         id: speaker
     }
 
@@ -231,10 +231,10 @@ Window {
         width: 50
         height: 50
 
-        source: (mute) ? "qrc:/icons/sound-off-icon.svg" : "qrc:/icons/sound-on-icon.svg"
+        source: speaker.mute ? "qrc:/icons/sound-off-icon.svg" : "qrc:/icons/sound-on-icon.svg"
 
         onClicked: {
-            mute = !mute;
+            speaker.mute = !speaker.mute;
         }
     }
 }
