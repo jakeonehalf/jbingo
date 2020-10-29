@@ -22,6 +22,7 @@ RowLayout {
         source: "qrc:/icons/stop.svg"
 
         onClicked: {
+            running = false;
             parent.stop();
         }
     }

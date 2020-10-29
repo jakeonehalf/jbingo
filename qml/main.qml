@@ -178,6 +178,7 @@ Window {
         }
 
         onStop: {
+            run.stop();
             lastCalled.text = "";
             BingoGrid.reset();
         }
