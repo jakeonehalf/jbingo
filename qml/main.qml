@@ -1,6 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
-import QtQuick.Controls 1.4
+import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import QtSpeak 1.0
 
@@ -16,6 +16,7 @@ Window {
     color: "#1c1c1c"
 
     property bool fullscreen: false
+    property bool mute: false
     property int guess
 
     visibility: (fullscreen) ? Window.FullScreen : Window.Windowed
@@ -48,7 +49,7 @@ Window {
         lastCalled.text = row + (guess + 1);
 
         BingoGrid.blink(guess);
-        speaker.speak(lastCalled.text);
+        if (!mute) speaker.speak(lastCalled.text);
     }
 
     Timer {
@@ -204,16 +205,35 @@ Window {
         onClicked: {
             fullscreen = !fullscreen;
         }
+
+        Item {
+            id: escapeItem
+            focus: true
+
+            Keys.onShortcutOverride: event.accepted = (event.key === Qt.Key_Escape)
+
+            Keys.onEscapePressed: {
+                fullscreen = false;
+            }
+        }
     }
 
-    Item {
-        id: escapeItem
-        focus: true
+    IconButton {
+        id: muteIcon
 
-        Keys.onShortcutOverride: event.accepted = (event.key === Qt.Key_Escape)
+        anchors.bottom: parent.bottom
+        anchors.right: fullscreenIcon.left
 
-        Keys.onEscapePressed: {
-            fullscreen = false;
+        anchors.bottomMargin: 15
+        anchors.rightMargin: 15
+
+        width: 50
+        height: 50
+
+        source: (mute) ? "qrc:/icons/sound-off.svg" : "qrc:/icons/sound-on.svg"
+
+        onClicked: {
+            mute = !mute;
         }
     }
 }
