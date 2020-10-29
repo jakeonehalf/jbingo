@@ -231,7 +231,7 @@ Window {
         width: 50
         height: 50
 
-        source: (mute) ? "qrc:/icons/sound-off.svg" : "qrc:/icons/sound-on.svg"
+        source: (mute) ? "qrc:/icons/sound-off-icon.svg" : "qrc:/icons/sound-on-icon.svg"
 
         onClicked: {
             mute = !mute;

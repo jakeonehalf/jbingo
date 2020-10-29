@@ -19,7 +19,7 @@ RowLayout {
 
         color: "red"
 
-        source: "qrc:/icons/stop.svg"
+        source: "qrc:/icons/stop-icon.svg"
 
         onClicked: {
             running = false;
@@ -35,7 +35,7 @@ RowLayout {
 
         color: (running) ? "yellow" : "green"
 
-        source: (running) ? "qrc:/icons/pause.svg" : "qrc:/icons/play.svg"
+        source: (running) ? "qrc:/icons/pause-icon.svg" : "qrc:/icons/start-icon.svg"
 
         onClicked: {
             if (running) {
@@ -54,7 +54,7 @@ RowLayout {
         width: 50
         height: 50
 
-        source: "qrc:/icons/next.svg"
+        source: "qrc:/icons/next-icon.svg"
 
         onClicked: {
             parent.next();

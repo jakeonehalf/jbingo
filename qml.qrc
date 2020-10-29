@@ -8,11 +8,12 @@
         <file>qml/main.qml</file>
         <file>qml/IconButton.qml</file>
         <file>qml/BingoControl.qml</file>
-        <file>icons/next.svg</file>
-        <file>icons/pause.svg</file>
-        <file>icons/play.svg</file>
-        <file>icons/stop.svg</file>
-        <file>icons/sound-off.svg</file>
-        <file>icons/sound-on.svg</file>
+        <file>icons/settings-icon.svg</file>
+        <file>icons/start-icon.svg</file>
+        <file>icons/stop-icon.svg</file>
+        <file>icons/pause-icon.svg</file>
+        <file>icons/next-icon.svg</file>
+        <file>icons/sound-off-icon.svg</file>
+        <file>icons/sound-on-icon.svg</file>
     </qresource>
 </RCC>
